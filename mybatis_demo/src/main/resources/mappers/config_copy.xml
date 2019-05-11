@@ -1,0 +1,7 @@
+<mapper namespace="com.joyance.basedemo.mybatis.mapper.ConfigMapper">
+	
+	<select id="selectById" resultType="com.joyance.basedemo.mybatis.persistence.Config" parameterType="java.lang.Integer">
+	      select id,c_desc,c_key,c_value,create_time,update_time from config_copy where id=#{id}
+	</select>
+	
+</mapper>
