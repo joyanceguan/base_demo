@@ -1,13 +1,18 @@
 package com.joyance.basedemo.mybatis.persistence;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Config {
+public class Config implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String c_desc;
 	private String c_key;
 	private String c_value;
+	private Integer index_key;
+	private int status;
 	private Date create_time;//创建时间
 	private Date update_time;//修改时间
 	
@@ -47,4 +52,17 @@ public class Config {
 	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
 	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public Integer getIndex_key() {
+		return index_key;
+	}
+	public void setIndex_key(Integer index_key) {
+		this.index_key = index_key;
+	}
+	
 }

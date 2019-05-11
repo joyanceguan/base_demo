@@ -1,5 +1,7 @@
 package com.joyance.basedemo.mybatis.mapper;
 
+import java.util.List;
+
 import com.joyance.basedemo.mybatis.persistence.Config;
 
 public interface ConfigMapper {
@@ -8,4 +10,9 @@ public interface ConfigMapper {
 	
 	public Config selectById(Integer id);
 	
+	public int update(Config config);
+	
+	public List<Config> queryAll(Integer id);
+	
+	public int deleteById(Integer id);
 }

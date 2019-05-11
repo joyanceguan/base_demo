@@ -4,4 +4,43 @@
 	      select id,c_desc,c_key,c_value,create_time,update_time from config_copy where id=#{id}
 	</select>
 	
+	<insert id="save" parameterType="com.joyance.basedemo.mybatis.persistence.Config" resultType="java.lang.Integer">
+	       insert into config_copy
+	       (
+               c_desc,
+               c_key,
+               c_value,
+               index_key,
+               status,
+               create_time,
+               update_time
+	       )
+	       values
+	       (
+               #{c_desc},
+               #{c_key},
+               #{c_value},
+               #{index_key},
+               #{status},
+               now(),
+               now()
+	       )
+	</insert>
+	
+	<update id="update" parameterType="com.joyance.basedemo.mybatis.persistence.Config" resultType="java.lang.Integer">
+	      update config_copy set
+	         c_desc = #{c_desc},
+	         c_value = #{c_value},
+		     update_time = now()
+		     where id=#{id}
+	</update>
+	
+	<select id="queryAll" resultType="com.joyance.basedemo.mybatis.persistence.Config" parameterType="java.lang.Integer">
+	   select id,c_desc,c_key,c_value,index_key,status,create_time,update_time from config_copy where id > #{id}
+	</select>
+	
+	<delete id="deleteById" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	   delete from config_copy where id = #{id}
+	</delete>
+	
 </mapper>
