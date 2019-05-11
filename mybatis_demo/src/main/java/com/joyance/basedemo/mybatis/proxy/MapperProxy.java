@@ -1,8 +1,9 @@
-package com.joyance.basedemo.mybatis.parser;
+package com.joyance.basedemo.mybatis.proxy;
 
 import java.util.Map;
 
 import com.joyance.basedemo.mybatis.model.Configuration;
+import com.joyance.basedemo.mybatis.parser.JDBCParser;
 import com.joyance.basedemo.mybatis.proxy.JDBCProxy;
 
 public class MapperProxy {

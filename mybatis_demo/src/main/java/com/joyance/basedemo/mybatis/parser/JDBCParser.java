@@ -16,6 +16,11 @@ import com.joyance.basedemo.mybatis.model.JDBCConfig;
 import com.joyance.basedemo.mybatis.model.MyStatement;
 import com.joyance.basedemo.mybatis.model.Operate_Type;
 
+/**
+ * jdbc处理器
+ * 处理入参，执行sql，处理返回结果
+ * @author guanyue
+ */
 public class JDBCParser {
 
 	private Configuration configuration;

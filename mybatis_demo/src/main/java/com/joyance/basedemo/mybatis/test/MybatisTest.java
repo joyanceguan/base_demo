@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.joyance.basedemo.mybatis.mapper.ConfigMapper;
-import com.joyance.basedemo.mybatis.parser.MapperProxy;
 import com.joyance.basedemo.mybatis.parser.Parser;
 import com.joyance.basedemo.mybatis.persistence.Config;
+import com.joyance.basedemo.mybatis.proxy.MapperProxy;
 
 public class MybatisTest {
 

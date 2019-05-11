@@ -21,6 +21,11 @@ import com.joyance.basedemo.mybatis.utils.GenericTokenParser;
 import com.joyance.basedemo.mybatis.utils.TokenHandler;
 import com.joyance.basedemo.mybatis.utils.TokenHandlerImpl;
 
+/**
+ * Configuration处理器
+ * 获取配置文件信息
+ * @author guanyue
+ */
 public class ConfigurationParser {
 
 	//解析配置文件

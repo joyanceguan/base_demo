@@ -1,5 +1,6 @@
 package com.joyance.basedemo.mybatis.proxy;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -7,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.joyance.basedemo.mybatis.annotation.Param;
 import com.joyance.basedemo.mybatis.model.Configuration;
 import com.joyance.basedemo.mybatis.model.Constants;
 import com.joyance.basedemo.mybatis.model.MyStatement;
@@ -30,6 +32,17 @@ public class JDBCProxy implements InvocationHandler{
 		String statementId = String.format(Constants.statementIdFormat, clazz.getTypeName(),methodName);
 		//获取执行的statement执行jdbc代码并返回
 		MyStatement myStatement = statementMap.get(statementId);
+		
+		//解析Param注解
+		Annotation[][] annotations = method.getParameterAnnotations();
+		for (Annotation[] annotation : annotations) {
+			for (Annotation ann : annotation) {
+				if(ann.annotationType().equals(Param.class)){
+					Param param = (Param)ann;
+				}
+			}
+		}
+		
 		return jdbcParser.execute(myStatement, args, method.getReturnType());
 	}
 
