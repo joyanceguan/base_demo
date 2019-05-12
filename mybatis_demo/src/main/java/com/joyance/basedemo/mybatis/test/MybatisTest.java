@@ -14,10 +14,12 @@ public class MybatisTest {
 		//mapper代理
 		MapperProxy proxys = Parser.getMapperProxy();
     	ConfigMapper configMapper =proxys.getMapper(ConfigMapper.class);
+    	
     	//查询
     	Config result = configMapper.selectById(14);
     	System.out.println(JSON.toJSONString(result,true));
     	
+    	//批量查询
 //    	List<Config> list =configMapper.queryAll(1996000);
 //    	System.out.println(JSON.toJSONString(list,true));
     	
@@ -36,7 +38,7 @@ public class MybatisTest {
 //    	config.setId(1996016);
 //    	int flag = configMapper.update(config);
 //    	System.out.println(flag==1?"保存成功":"保存失败");
-    
+        //删除
 //    	int flag = configMapper.deleteById(1996016);
 //    	System.out.println(flag==1?"删除成功":"删除失败");
 	}

@@ -33,7 +33,7 @@ public class JDBCProxy implements InvocationHandler{
 		//获取执行的statement执行jdbc代码并返回
 		MyStatement myStatement = statementMap.get(statementId);
 		
-		//解析Param注解
+		//解析Param注解(未完待续)
 		Annotation[][] annotations = method.getParameterAnnotations();
 		for (Annotation[] annotation : annotations) {
 			for (Annotation ann : annotation) {
