@@ -10,16 +10,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.dom4j.Document;
 import org.dom4j.Element;
 
-import com.joyance.basedemo.mybatis.model.BoundSql;
+import com.joyance.basedemo.mybatis.impl.StatementBuilderImpl;
+import com.joyance.basedemo.mybatis.interfaces.StatementBuilder;
 import com.joyance.basedemo.mybatis.model.Configuration;
 import com.joyance.basedemo.mybatis.model.Constants;
 import com.joyance.basedemo.mybatis.model.JDBCConfig;
 import com.joyance.basedemo.mybatis.model.MyStatement;
-import com.joyance.basedemo.mybatis.model.Operate_Type;
 import com.joyance.basedemo.mybatis.utils.DocumentReader;
-import com.joyance.basedemo.mybatis.utils.GenericTokenParser;
-import com.joyance.basedemo.mybatis.utils.TokenHandler;
-import com.joyance.basedemo.mybatis.utils.TokenHandlerImpl;
 
 /**
  * Configuration处理器
@@ -128,32 +125,16 @@ public class ConfigurationParser {
     		if(map.containsKey(statementId)){
     			continue;
     		}
-    		MyStatement myStatement = new MyStatement();
-    		myStatement.setId(id);
-    		/*TODO 动态解析sql语句*/
-    		myStatement.setBoundSql(getBoundSql(statement.getText()));
-    		/*TODO 类型判断考虑加<sql id=""> */
-    		myStatement.setType(Operate_Type.getType(statement.getName()));
-    		try {
-    			/*TODO 基本类型，不需要完全限定类名*/
-				myStatement.setParameterType(Class.forName(statement.attributeValue("parameterType")));
-				/*TODO 基本类型，不需要完全限定类名*/
-				myStatement.setResultType(Class.forName(statement.attributeValue("resultType")));
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
+    		StatementBuilder builder = StatementBuilderImpl.create();
+    		MyStatement myStatement = builder.id(id)
+    		       .type(statement.getName())
+    		       .parameterType(statement.attributeValue("parameterType"))
+    		       .resultType(statement.attributeValue("resultType"))
+    		       .sql(statement.getText())
+    		       .build();
     		map.put(statementId, myStatement);
     	}
     }
     
-    public BoundSql getBoundSql(String sql){
-    	BoundSql boundSql = new BoundSql();
-    	TokenHandler tokenHandler = new TokenHandlerImpl();
-    	GenericTokenParser parser = new GenericTokenParser("#{","}",tokenHandler);
-    	boundSql.setParamNames(tokenHandler.getFieldNames());
-		String str = parser.parse(sql);
-		boundSql.setSql(str);
-		return boundSql;
-    }
     
 }
