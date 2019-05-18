@@ -7,5 +7,6 @@
   <modules>
   	<module>mybatis_demo</module>
   	<module>design_pattern</module>
+  	<module>spring_demo</module>
   </modules>
 </project>

@@ -1,0 +1,13 @@
+<beans>
+    <bean id="address" class="com.joyance.springdemo.bean.Address">
+        <property name="city" value="哈尔滨"></property>
+        <property name="province" value="黑龙江"></property>
+    </bean>
+    
+    <bean id="person" class="com.joyance.springdemo.bean.Person" init-method="init">
+        <property name="name" value="joyance"></property>
+        <property name="age" value="28"></property>
+        <!-- 通过 ref 引用了 address 这个 bean -->
+        <property name="address" ref="address"></property>
+    </bean>
+</beans>
